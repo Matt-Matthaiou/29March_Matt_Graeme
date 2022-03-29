@@ -37,4 +37,24 @@ Decorator.prototype.paintIfEnough = function(room){
 
 }
 
+Decorator.prototype.managePaint = function(room){
+    let totalToPaint = room.size;
+    for (let paint of this.paintStock){
+        if (totalToPaint >= paint.quantity){
+            totalToPaint -= paint.quantity
+            paint.quantity = 0;
+            paint.itsEmpty();
+            
+            
+            
+        }
+        else{
+            paint.quantity -= totalToPaint;
+            totalToPaint = 0;
+            break;
+        }
+    }
+
+}
+
 module.exports = Decorator
